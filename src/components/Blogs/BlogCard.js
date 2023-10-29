@@ -9,10 +9,11 @@ function BlogCard({ props }) {
     const [title, setTitle] = useState();
     const [textBody, setTextBody] = useState();
     const userData = JSON.parse(localStorage.getItem("user"));
+    const apiUrl = process.env.REACT_APP_API_URL; // Update the variable name
 
     const handleDelete = () => {
         axios
-            .delete(`http://localhost:8001/blog/deleteBlog/${props._id}`)
+            .delete(`${apiUrl}/blog/deleteBlog/${props._id}`) // Use the apiUrl variable
             .then((res) => {
                 window.location.reload();
             })
@@ -28,7 +29,7 @@ function BlogCard({ props }) {
             textBody,
         };
         axios
-            .put(`http://localhost:8001/blog/editBlog/${userData.userId}`, blogObj)
+            .put(`${apiUrl}/blog/editBlog/${userData.userId}`, blogObj) // Use the apiUrl variable
             .then((res) => {
                 alert("Blog edited successfully!");
                 window.location.href = "/myblogs";

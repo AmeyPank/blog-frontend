@@ -8,6 +8,7 @@ function CreateEditBlog({ pageTitle, btnText }) {
     const [title, setTitle] = useState();
     const [textBody, setTextBody] = useState();
     const userData = JSON.parse(localStorage.getItem("user"));
+    const apiUrl = process.env.REACT_APP_API_URL; // Update the variable name
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,7 +19,7 @@ function CreateEditBlog({ pageTitle, btnText }) {
         if (pageTitle === "Create Blog") {
             axios
                 .post(
-                    `http://localhost:8001/blog/createBlog/${userData.userId}`,
+                    `https://blog-app-backend-3o3o.onrender.com/blog/createBlog/${userData.userId}`,
                     blogObj
                 )
                 .then((res) => {
@@ -30,7 +31,7 @@ function CreateEditBlog({ pageTitle, btnText }) {
                 });
         } else {
             axios
-                .put(`http://localhost:8001/blog/editBlog/${userData.userId}`, blogObj)
+                .put(`${apiUrl}/blog/editBlog/${userData.userId}`, blogObj)
                 .then((res) => {
                     alert("Blog edited successfully!");
                     window.location.href = "/myblogs";
@@ -38,6 +39,8 @@ function CreateEditBlog({ pageTitle, btnText }) {
                 .catch((err) => {
                     alert(err);
                 });
+            
+
         }
     };
     return (

@@ -4,12 +4,13 @@ import Card from "react-bootstrap/Card";
 
 function UserCard({ props }) {
     const userData = JSON.parse(localStorage.getItem("user"));
+    const apiUrl = process.env.REACT_APP_API_URL; // Update the variable name
 
     const handleFollow = (followingUserId) => {
         const followObj = { followingUserId };
         axios
             .post(
-                `http://localhost:8001/follow/followUser/${userData.userId}`,
+                `${apiUrl}/follow/followUser/${userData.userId}`,
                 followObj
             )
             .then((res) => alert("Successfully followed!"))

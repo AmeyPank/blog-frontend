@@ -6,6 +6,7 @@ import axios from "axios";
 function Login() {
     const [loginId, setLoginId] = useState();
     const [password, setPassword] = useState();
+    const apiUrl = process.env.REACT_APP_API_URL; // Update the variable name
 
     useEffect(() => {
         if (localStorage.getItem("user")) {
@@ -21,7 +22,7 @@ function Login() {
         };
 
         axios
-            .post("http://localhost:8001/user/login", loginObj)
+            .post(`${apiUrl}/user/login`, loginObj)
             .then((res) => {
                 console.log(res.data.data);
                 localStorage.setItem("user", JSON.stringify(res.data.data));

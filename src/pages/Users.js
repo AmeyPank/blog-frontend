@@ -7,10 +7,11 @@ import Header from "../components/Header.js";
 function Users() {
     const [users, setUsers] = useState();
     const userData = JSON.parse(localStorage.getItem("user"));
+    const apiUrl = process.env.REACT_APP_API_URL; // Update the variable name
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8001/user/getallusers/${userData.userId}`)
+            .get(`${apiUrl}/user/getallusers/${userData.userId}`)
             .then((res) => setUsers(res.data.data))
             .catch((err) => alert(err));
     }, [userData.userId]);

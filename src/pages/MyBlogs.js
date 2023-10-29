@@ -7,11 +7,12 @@ function MyBlogs() {
     // const [page, setPage] = useState(1);
     const [myBlogs, setMyBlogs] = useState();
     const userData = JSON.parse(localStorage.getItem("user"));
+    const apiUrl = process.env.REACT_APP_API_URL; // Update the variable name
 
     useEffect(() => {
         console.log(userData.userId);
         axios
-            .get(`http://localhost:8001/blog/getUserBlogs/${userData.userId}`)
+            .get(`${apiUrl}/blog/getUserBlogs/${userData.userId}`)
             .then((res) => {
                 setMyBlogs(res.data.data);
             });

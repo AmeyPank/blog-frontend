@@ -3,12 +3,14 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 
 function Header() {
+    const apiUrl = process.env.REACT_APP_API_URL; // Update the variable name
+
     const userData = JSON.parse(localStorage.getItem("user"));
     const handleLogout = () => {
         localStorage.removeItem("user");
         window.location.href = "/login";
         axios
-            .post("http://localhost:8001/user/logout")
+            .post(`${apiUrl}/user/logout`)
             .then((res) => console.log(res.data))
             .catch((err) => alert(err));
     };

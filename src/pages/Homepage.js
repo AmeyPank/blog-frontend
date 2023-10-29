@@ -6,12 +6,14 @@ import "../App.css";
 import Header from "../components/Header.js";
 
 function Homepage() {
+    const apiUrl = process.env.REACT_APP_API_URL; // Update the variable name
+
     const [blogs, setBlogs] = useState();
     const userData = JSON.parse(localStorage.getItem("user"));
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8001/blog/homeblogs/${userData.userId}`)
+            .get(`${apiUrl}/blog/homeblogs/${userData.userId}`)
             .then((res) => {
                 setBlogs(res.data.data);
             })

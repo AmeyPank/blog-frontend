@@ -12,6 +12,7 @@ function InputForm() {
     const [name, setName] = useState();
     const [password, setPassword] = useState();
     const [email, setEmail] = useState();
+    const apiUrl = process.env.REACT_APP_API_URL; // Update the variable name
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,7 +24,7 @@ function InputForm() {
         };
 
         axios
-            .post("http://localhost:8001/user/register", userObj)
+            .post(`${apiUrl}/user/register`, userObj)
             .then((res) => {
                 console.log(res.data.status);
                 if (res.data.status === 201) {
