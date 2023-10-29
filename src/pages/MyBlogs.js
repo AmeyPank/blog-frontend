@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import BlogCard from "../components/Blogs/BlogCard";
-import Header from "../components/Header.js";
+import Header from "../components/Header/Header.js";
 
 function MyBlogs() {
     // const [page, setPage] = useState(1);

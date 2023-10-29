@@ -8,14 +8,18 @@ import MyBlogs from "./pages/MyBlogs";
 import CreateEditBlog from "./pages/CreateEditBlog";
 import Users from "./pages/Users";
 import "./App.css"
+import Footer from "./components/Footer/Footer";
+import HomePage from "./pages/MainHome";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Register />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/" element={<HomePage />}></Route>
         <Route path="/homepage" element={<Homepage />}></Route>
+
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/login" element={<Login />}></Route>
         <Route path="/myblogs" element={<MyBlogs />}></Route>
         <Route path="/users" element={<Users />}></Route>
         <Route
@@ -30,6 +34,7 @@ function App() {
             <CreateEditBlog pageTitle={"Edit Blog"} btnText={"Edit Blog"} />
           }
         ></Route>
+
       </Routes>
     </BrowserRouter>
   );

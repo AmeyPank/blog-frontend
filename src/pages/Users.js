@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import UserCard from "../components/Users/UserCard";
 import "../App.css";
-import Header from "../components/Header.js";
+import Header from "../components/Header/Header.js";
 
 function Users() {
     const [users, setUsers] = useState();

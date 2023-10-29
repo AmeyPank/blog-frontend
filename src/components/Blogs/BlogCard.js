@@ -46,12 +46,12 @@ function BlogCard({ props }) {
                 <Card.Text>{props.textBody}</Card.Text>
                 <Button
                     className="m-2"
-                    variant="primary"
+                    variant="outline-success"
                     onClick={() => setIsEdit(!isEdit)}
                 >
                     Edit
                 </Button>
-                <Button className="m-2" variant="danger" onClick={handleDelete}>
+                <Button className="m-3" variant="outline-danger" onClick={handleDelete}>
                     Delete
                 </Button>
 

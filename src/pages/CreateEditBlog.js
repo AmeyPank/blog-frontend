@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 function CreateEditBlog({ pageTitle, btnText }) {
     const [title, setTitle] = useState();
@@ -39,7 +40,7 @@ function CreateEditBlog({ pageTitle, btnText }) {
                 .catch((err) => {
                     alert(err);
                 });
-            
+
 
         }
     };
@@ -68,6 +69,8 @@ function CreateEditBlog({ pageTitle, btnText }) {
                 </Form.Group>
                 <Button type="submit">{btnText}</Button>
             </Form>
+
+            <Footer />
         </div>
     );
 }

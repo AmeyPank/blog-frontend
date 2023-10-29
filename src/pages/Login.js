@@ -38,12 +38,12 @@ function Login() {
     return (
         <div>
             <Form className="register_form" onSubmit={handleSubmit}>
-                <h1 className="mb-5">Register into Blog App</h1>
+                <h1 className="mb-5">Login into Blog App</h1>
                 <Form.Group className="mb-3" controlId="LoginId">
                     <Form.Label>Login ID</Form.Label>
                     <Form.Control
                         type="text"
-                        placeholder="Enter LoginId"
+                        placeholder="Enter LoginId/ UserName"
                         onChange={(e) => setLoginId(e.target.value)}
                     />
                 </Form.Group>
