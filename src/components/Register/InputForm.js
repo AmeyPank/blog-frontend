@@ -24,7 +24,7 @@ function InputForm() {
         };
 
         axios
-            .post(`${apiUrl}/user/register`, userObj)
+            .post(`https://blog-app-backend-3o3o.onrender.com/user/register`, userObj)
             .then((res) => {
                 console.log(res.data.status);
                 if (res.data.status === 201) {

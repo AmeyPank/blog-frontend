@@ -13,7 +13,7 @@ function Homepage() {
 
     useEffect(() => {
         axios
-            .get(`${apiUrl}/blog/homeblogs/${userData.userId}`)
+            .get(`https://blog-app-backend-3o3o.onrender.com/blog/homeblogs/${userData.userId}`)
             .then((res) => {
                 setBlogs(res.data.data);
             })

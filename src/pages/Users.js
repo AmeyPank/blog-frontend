@@ -11,7 +11,7 @@ function Users() {
 
     useEffect(() => {
         axios
-            .get(`${apiUrl}/user/getallusers/${userData.userId}`)
+            .get(`https://blog-app-backend-3o3o.onrender.com/user/getallusers/${userData.userId}`)
             .then((res) => setUsers(res.data.data))
             .catch((err) => alert(err));
     }, [userData.userId]);

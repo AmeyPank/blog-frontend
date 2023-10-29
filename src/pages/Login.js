@@ -22,7 +22,7 @@ function Login() {
         };
 
         axios
-            .post(`${apiUrl}/user/login`, loginObj)
+            .post(`https://blog-app-backend-3o3o.onrender.com/user/login`, loginObj)
             .then((res) => {
                 console.log(res.data.data);
                 localStorage.setItem("user", JSON.stringify(res.data.data));

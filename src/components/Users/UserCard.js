@@ -10,7 +10,7 @@ function UserCard({ props }) {
         const followObj = { followingUserId };
         axios
             .post(
-                `${apiUrl}/follow/followUser/${userData.userId}`,
+                `https://blog-app-backend-3o3o.onrender.com/follow/followUser/${userData.userId}`,
                 followObj
             )
             .then((res) => alert("Successfully followed!"))

@@ -13,7 +13,7 @@ function BlogCard({ props }) {
 
     const handleDelete = () => {
         axios
-            .delete(`${apiUrl}/blog/deleteBlog/${props._id}`) // Use the apiUrl variable
+            .delete(`https://blog-app-backend-3o3o.onrender.com/blog/deleteBlog/${props._id}`) // Use the apiUrl variable
             .then((res) => {
                 window.location.reload();
             })
@@ -29,7 +29,7 @@ function BlogCard({ props }) {
             textBody,
         };
         axios
-            .put(`${apiUrl}/blog/editBlog/${userData.userId}`, blogObj) // Use the apiUrl variable
+            .put(`https://blog-app-backend-3o3o.onrender.com/blog/editBlog/${userData.userId}`, blogObj) // Use the apiUrl variable
             .then((res) => {
                 alert("Blog edited successfully!");
                 window.location.href = "/myblogs";

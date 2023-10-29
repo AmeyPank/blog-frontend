@@ -12,7 +12,7 @@ function MyBlogs() {
     useEffect(() => {
         console.log(userData.userId);
         axios
-            .get(`${apiUrl}/blog/getUserBlogs/${userData.userId}`)
+            .get(`https://blog-app-backend-3o3o.onrender.com/blog/getUserBlogs/${userData.userId}`)
             .then((res) => {
                 setMyBlogs(res.data.data);
             });

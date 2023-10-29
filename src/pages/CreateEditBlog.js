@@ -31,7 +31,7 @@ function CreateEditBlog({ pageTitle, btnText }) {
                 });
         } else {
             axios
-                .put(`${apiUrl}/blog/editBlog/${userData.userId}`, blogObj)
+                .put(`https://blog-app-backend-3o3o.onrender.com/blog/editBlog/${userData.userId}`, blogObj)
                 .then((res) => {
                     alert("Blog edited successfully!");
                     window.location.href = "/myblogs";

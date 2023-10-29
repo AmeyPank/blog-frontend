@@ -10,7 +10,7 @@ function Header() {
         localStorage.removeItem("user");
         window.location.href = "/login";
         axios
-            .post(`${apiUrl}/user/logout`)
+            .post(`https://blog-app-backend-3o3o.onrender.com/user/logout`)
             .then((res) => console.log(res.data))
             .catch((err) => alert(err));
     };
