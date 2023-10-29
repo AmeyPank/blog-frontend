@@ -1,0 +1,10 @@
+.register_form {
+    /* padding: 200px; */
+    width: 500px;
+    padding-top: 50px;
+    margin: auto;
+}
+
+.register_form h1 {
+    text-align: center;
+}
