@@ -1,95 +1,107 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Navigate, useNavigate } from 'react-router-dom';
-import "./MainHome.css"
+import { useNavigate } from "react-router-dom";
+import "./MainHome.css";
+
+// Styled Components
 const StyledHeader = styled.div`
-  background-color: #ccc;
-  height: 50px;
-  background-image: url('your_image_url');
+  background-color: #79a2cb;
+  background-image: url("https://via.placeholder.com/1500x500"); // Replace with your image URL
   background-size: cover;
   background-position: center;
+  height: 400px;
   display: flex;
-  align-items: flex-start;
-//   justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
   padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 `;
 
 const Logo = styled.div`
-  color: white;
-  font-size: 24px;
+  font-size: 2.5rem;
   font-weight: bold;
+  animation: moveInLeft 1s ease-out;
+`;
+
+const Heading = styled.h1`
+  font-size: 2.5rem;
+  margin: 20px 0;
+  animation: moveInLeft 1.2s ease-out;
+`;
+
+const SubHeading = styled.h5`
+  font-size: 1.25rem;
+  font-weight: 600;
+  animation: moveInLeft 1.4s ease-out;
 `;
 
 const StyledButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+  gap: 20px;
   margin-top: 50px;
 `;
 
 const StyledButton = styled.button`
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
-  margin: 100px 2px;
   cursor: pointer;
   border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: #45a049;
+    transform: translateY(-3px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 `;
 
 const HomePage = () => {
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const handleLogin = () => {
-        // Logic for handling login
-        history("/login"); // Replace with your login component route
+        navigate("/login");
     };
 
     const handleSignIn = () => {
-        // Logic for handling sign-in
-        history("/register"); // Replace with your sign-in component route
+        navigate("/register");
     };
 
     const handleCreateBlog = () => {
-        // Logic for creating a blog
-        history("/login"); // Replace with your create blog component route
+        navigate("/login");
     };
+
     return (
         <div>
-            <StyledHeader style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <Logo style={{ animation: "moveInLeft 1s ease-out", alignSelf: "flex-start", marginLeft: "10px" }}>
-                    .BloggerSpot
-                </Logo>
-                <div style={{ margin: "5px" }}>
-                    <h1 style={{ animation: "moveInLeft 1s ease-out" }}>
-                        Publish your imaginations, your way
-                    </h1>
-                </div>
-                <div style={{ margin: "5px" }}>
-                    <h5 style={{ animation: "moveInLeft 1.3s ease-out", fontWeight: 600 }}>
-                        Create a unique and beautiful blog easily.
-                    </h5>
-                </div>
+            <StyledHeader>
+                <Logo>.BloggerSpot</Logo>
+                <Heading>Publish your imaginations, your way</Heading>
+                <SubHeading>Create a unique and beautiful blog easily.</SubHeading>
             </StyledHeader>
-
-
 
             <StyledButtonContainer>
                 <StyledButton onClick={handleLogin} style={{ animation: "moveInLeft 1.5s ease-out" }}>
                     Login
                 </StyledButton>
                 <StyledButton onClick={handleSignIn} style={{ animation: "moveInLeft 1.7s ease-out" }}>
-                    Sign In
+                    Sign Up
                 </StyledButton>
                 <StyledButton onClick={handleCreateBlog} style={{ animation: "moveInLeft 1.9s ease-out" }}>
                     Create a Blog
                 </StyledButton>
             </StyledButtonContainer>
         </div>
-
     );
 };
 

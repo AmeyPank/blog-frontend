@@ -34,9 +34,8 @@ function App() {
             <CreateEditBlog pageTitle={"Edit Blog"} btnText={"Edit Blog"} />
           }
         ></Route>
-
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 

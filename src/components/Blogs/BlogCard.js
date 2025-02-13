@@ -3,18 +3,18 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
+import { StyledButton, StyledCard, StyledCardText, StyledCardTitle } from "./BlogCard.styles";
 
 function BlogCard({ props }) {
     const [isEdit, setIsEdit] = useState(false);
-    const [title, setTitle] = useState();
-    const [textBody, setTextBody] = useState();
+    const [title, setTitle] = useState(props.title); // ✅ Prefill title
+    const [textBody, setTextBody] = useState(props.textBody); // ✅ Prefill textBody
     const userData = JSON.parse(localStorage.getItem("user"));
-    const apiUrl = process.env.REACT_APP_API_URL; // Update the variable name
 
     const handleDelete = () => {
         axios
-            .delete(`https://blog-app-backend-3o3o.onrender.com/blog/deleteBlog/${props._id}`) // Use the apiUrl variable
-            .then((res) => {
+            .delete(`https://blog-app-backend-3o3o.onrender.com/blog/deleteBlog/${props._id}`)
+            .then(() => {
                 window.location.reload();
             })
             .catch((err) => {
@@ -23,14 +23,11 @@ function BlogCard({ props }) {
     };
 
     const handleSubmit = (blogId) => {
-        const blogObj = {
-            blogId,
-            title,
-            textBody,
-        };
+        const blogObj = { blogId, title, textBody };
+
         axios
-            .put(`https://blog-app-backend-3o3o.onrender.com/blog/editBlog/${userData.userId}`, blogObj) // Use the apiUrl variable
-            .then((res) => {
+            .put(`https://blog-app-backend-3o3o.onrender.com/blog/editBlog/${userData.userId}`, blogObj)
+            .then(() => {
                 alert("Blog edited successfully!");
                 window.location.href = "/myblogs";
             })
@@ -39,52 +36,78 @@ function BlogCard({ props }) {
             });
     };
 
-    return (
-        <Card className="m-5">
-            <Card.Body>
-                <Card.Title>{props.title}</Card.Title>
-                <Card.Text>{props.textBody}</Card.Text>
-                <Button
-                    className="m-2"
-                    variant="outline-success"
-                    onClick={() => setIsEdit(!isEdit)}
-                >
-                    Edit
-                </Button>
-                <Button className="m-3" variant="outline-danger" onClick={handleDelete}>
-                    Delete
-                </Button>
+    // ✅ Handle cancel edit
+    const handleCancelEdit = () => {
+        setTitle(props.title); // Reset title
+        setTextBody(props.textBody); // Reset text body
+        setIsEdit(false); // Close edit mode
+    };
 
-                {isEdit ? (
-                    <Form
-                        className="register_form"
-                        onSubmit={() => handleSubmit(props._id)}
+    return (
+        <StyledCard>
+            <Card.Body>
+                <StyledCardTitle>{props.title}</StyledCardTitle>
+                <StyledCardText>{props.textBody}</StyledCardText>
+
+                <div className="d-flex justify-content-between mt-3">
+                    <StyledButton
+                        variant="outline-success"
+                        onClick={() => {
+                            setIsEdit(true);
+                            setTitle(props.title); // ✅ Reset title when opening edit mode
+                            setTextBody(props.textBody); // ✅ Reset text body when opening edit mode
+                        }}
                     >
-                        <Form.Group className="mb-3" controlId="title">
-                            <Form.Label>Title</Form.Label>
+                        ✏️ Edit
+                    </StyledButton>
+                    <StyledButton variant="outline-danger" onClick={handleDelete}>
+                        🗑️ Delete
+                    </StyledButton>
+                </div>
+
+                {isEdit && (
+                    <Form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            handleSubmit(props._id);
+                        }}
+                        className="mt-4"
+                    >
+                        <Form.Group controlId="title">
+                            <Form.Label className="fw-semibold">Title</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter Title"
+                                value={title} // ✅ Prefilled value
                                 onChange={(e) => setTitle(e.target.value)}
+                                className="rounded"
                             />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="textBody">
-                            <Form.Label>Text Body</Form.Label>
+                        <Form.Group controlId="textBody" className="mt-3">
+                            <Form.Label className="fw-semibold">Text Body</Form.Label>
                             <Form.Control
                                 as="textarea"
-                                rows={6}
+                                rows={4}
                                 placeholder="Enter text body"
+                                value={textBody} // ✅ Prefilled value
                                 onChange={(e) => setTextBody(e.target.value)}
+                                className="rounded"
                             />
                         </Form.Group>
-                        <Button type="submit">Edit Blog</Button>
+
+                        <div className="d-flex justify-content-end mt-3">
+                            <StyledButton type="submit" variant="primary">
+                                💾 Save Changes
+                            </StyledButton>
+                            <StyledButton type="button" variant="secondary" onClick={handleCancelEdit} className="ms-2">
+                                ❌ Cancel
+                            </StyledButton>
+                        </div>
                     </Form>
-                ) : (
-                    <></>
                 )}
             </Card.Body>
-        </Card>
+        </StyledCard>
     );
 }
 
